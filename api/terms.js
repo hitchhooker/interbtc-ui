@@ -1,22 +1,9 @@
-import { cryptoWaitReady, signatureVerify } from "@polkadot/util-crypto";
-import postgres from 'pg'
+import postgres from 'pg';
 const { Pool } = postgres;
-
-// const MESSAGE = "KINTSUGI_TERMS_AND_CONDITIONS_LINK";
-
-const pool = new Pool({
-  connectionTimeoutMillis: 3000,
-  ssl: {
-    rejectUnauthorized: false
-  }
-})
-
-const pattern = /\/terms\/(?<wallet>\w+)/;
 
 const allowCors = fn => async (req, res) => {
   res.setHeader('Access-Control-Allow-Credentials', true)
   res.setHeader('Access-Control-Allow-Origin', '*')
-  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
   res.setHeader(
     'Access-Control-Allow-Headers',
@@ -27,38 +14,17 @@ const allowCors = fn => async (req, res) => {
     return
   }
   return await fn(req, res)
-}
+};
 
 const terms = async (request, response) => {
-  if (!pattern.test(request.url)) {
-    return response.status(400).send('Bad Request');
+  // Directly respond to GET or POST requests without checking the URL pattern, wallet, or version.
+  if (request.method === 'GET' || request.method === 'POST') {
+    return response.status(200).send({ success: true, message: "Terms requirement disabled." });
   }
-
-  const wallet = request.url.match(pattern).groups.wallet;
-  const version = request.query.version;
-
-  if (request.method === 'GET') {
-    const result = await pool.query('select exists(select 1 from signed_terms where wallet_id=$1 and version=$2)', [wallet, version])
-    return response.send(result.rows[0]);
-  } else if (request.method === 'POST') {
-    try {
-      // TODO: verify signature
-      // const { signed_message } = JSON.parse(request.body);
-      // const { isValid } = signatureVerify(MESSAGE, signed_message, wallet);
-
-      const result = await pool.query('insert into signed_terms (wallet_id, version) values ($1, $2)', [wallet, version])
-      return response.status(201);
-    } catch (error) {
-      if (error.code === '23505') {
-        return response.status(200).send('Already signed');
-      }
-      console.log(error);
-      return response.status(400).send('Bad Request');
-    }
-  }
+  // Respond with Bad Request if the method is not GET or POST.
   return response.status(400).send('Bad Request');
-}
+};
 
-export default async function (request, response) {
+export default async function(request, response) {
   return allowCors(terms)(request, response);
 }
