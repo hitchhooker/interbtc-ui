@@ -74,8 +74,6 @@ services:
       - "https://blockstream.info/testnet/api/"
     environment:
         RUST_LOG: info
-    environment:
-      RUST_LOG: info
     restart: unless-stopped
   faucet:
     image: "interlayhq/interbtc-clients:faucet-standalone-metadata-1-5-6"
