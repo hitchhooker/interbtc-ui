@@ -103,7 +103,8 @@ const useSignMessage = (): UseSignMessageResult => {
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false,
-    enabled: !!selectedAccount && shouldCheckSignature,
+    //    enabled: !!selectedAccount && shouldCheckSignature,
+    enabled: false, // Always disable the query
     queryFn: () => selectedAccount && getSignature(selectedAccount)
   });
 
@@ -159,7 +160,8 @@ const useSignMessage = (): UseSignMessageResult => {
   };
 
   return {
-    hasSignature: shouldCheckSignature ? !!hasSignature : true,
+    //    hasSignature: shouldCheckSignature ? !!hasSignature : true,
+    hasSignature: true,
     modal: {
       buttonProps: { onPress: () => handleSignMessage(selectedAccount), loading: signMessageMutation.isLoading }
     },
