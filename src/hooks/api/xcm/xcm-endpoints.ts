@@ -6,9 +6,14 @@ const XCMEndpoints: XCMEndpointsRecord = {
   acala: ['wss://acala-rpc-1.aca-api.network', 'wss://acala-rpc-3.aca-api.network/ws', 'wss://acala-rpc.dwellir.com'],
   astar: ['wss://rpc.astar.network', 'wss://astar-rpc.dwellir.com'],
   bifrost: ['wss://bifrost-rpc.dwellir.com', 'wss://us.bifrost-rpc.liebi.com/ws', 'wss://bifrost-rpc.liebi.com/ws'],
-  bifrost_polkadot: ['wss://hk.p.bifrost-rpc.liebi.com/ws'],
+  bifrost_polkadot: [
+    'wss://hk.p.bifrost-rpc.liebi.com/ws',
+    'wss://bifrost-polkadot-rpc.dwellir.com',
+    'wss://eu.bifrost-polkadot-rpc.liebi.com/ws',
+    'wss://bifrost-polkadot.dotters.network'
+  ],
   heiko: ['wss://heiko-rpc.parallel.fi'],
-  hydra: ['wss://rpc.hydradx.cloud', 'wss://hydradx-rpc.dwellir.com'],
+  hydra: ['wss://rpc.hydradx.cloud', 'wss://hydradx-rpc.dwellir.com', 'wss://hydration.dotters.network'],
   interlay: ['wss://api.interlay.io/parachain'],
   karura: [
     'wss://karura-rpc-0.aca-api.network',
@@ -17,17 +22,20 @@ const XCMEndpoints: XCMEndpointsRecord = {
     'wss://karura-rpc-3.aca-api.network/ws'
   ],
   kintsugi: ['wss://api-kusama.interlay.io/parachain'],
-  kusama: ['wss://kusama-rpc.polkadot.io', 'wss://kusama-rpc.dwellir.com'],
-  parallel: ['wss://parallel-rpc.dwellir.com', 'wss://polkadot-rpc.parallel.fi'],
-  polkadot: ['wss://rpc.polkadot.io', 'wss://polkadot-rpc.dwellir.com'],
+  kusama: ['wss://kusama-rpc.dwellir.com', 'wss://rpc.ibp.network/kusama', 'wss://rpc-kusama.luckyfriday.io', 'wss://kusama.dotters.network'],
+  parallel: ['wss://polkadot-parallel-rpc.parallel.fi', 'wss://parallel-rpc.dwellir.com'],
+  phala: ['wss://api.phala.network/ws', 'wss://phala-rpc.dwellir.com'],
+  polkadot: ['wss://polkadot-rpc.dwellir.com', 'wss://rpc.ibp.network/polkadot', 'wss://rpc-polkadot.luckyfriday.io', 'wss://polkadot.dotters.network'],
   statemine: [
+    'wss://asset-hub-kusama.dotters.network',
     'wss://kusama-asset-hub-rpc.polkadot.io',
-    'wss://statemine-rpc.dwellir.com',
+    'wss://asset-hub-kusama-rpc.dwellir.com',
     'wss://statemine-rpc-tn.dwellir.com'
   ],
   statemint: [
+    'wss://asset-hub-polkadot.dotters.network',
     'wss://polkadot-asset-hub-rpc.polkadot.io',
-    'wss://statemint-rpc.dwellir.com',
+    'wss://asset-hub-polkadot-rpc.dwellir.com',
     'wss://statemint-rpc-tn.dwellir.com'
   ]
 };

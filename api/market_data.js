@@ -36,7 +36,6 @@ const dia_assets = {
   "wrapped-bitcoin": "/Ethereum/0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
   "phala-network": "/Ethereum/0x6c5bA91642F10282b576d91922Ae6448C9d52f4E"
 }
-}
 
 // Coingecko to Dia XLSD tickers
 const dia_xlsd = {
